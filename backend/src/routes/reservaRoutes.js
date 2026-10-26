@@ -10,4 +10,8 @@ router.post('/', reservaController.crearReserva);
 router.post('/:id/checkin', reservaController.registrarCheckIn);
 router.post('/:id/checkout', reservaController.registrarCheckOut);
 
+// Nuevas rutas financieras
+router.get('/:id/saldo', reservaController.consultarSaldoReserva);
+router.post('/:id/pagos', reservaController.registrarPagoReserva);
+
 module.exports = router;

@@ -111,8 +111,46 @@ const registrarCheckOut = async (req, res) => {
         res.status(500).json({ error: 'Error al registrar el check-out' });
     }
 };
+// Consultar saldo de una reserva usando la vista v_saldo_reserva
+const consultarSaldoReserva = async (req, res) => {
+    const { id } = req.params; // id_reserva
+    try {
+        const [rows] = await db.query('SELECT * FROM v_saldo_reserva WHERE id_reserva = ?', [id]);
+
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'No se encontró información financiera para esta reserva' });
+        }
+
+        res.json(rows[0]);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al consultar el saldo de la reserva' });
+    }
+};
+
+// Registrar un pago para una reserva
+const registrarPagoReserva = async (req, res) => {
+    const { id } = req.params; // id_reserva
+    const { monto, tipo, metodo_pago, id_usuario } = req.body; // Añadimos 'tipo'
+
+    try {
+        const [result] = await db.query(
+            'INSERT INTO pago (id_reserva, monto, tipo, fecha_pago, metodo_pago, id_usuario) VALUES (?, ?, ?, NOW(), ?, ?)',
+            [id, monto, tipo, metodo_pago, id_usuario]
+        );
+
+        res.status(201).json({
+            mensaje: 'Pago registrado exitosamente',
+            id_pago: result.insertId
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al registrar el pago (es posible que supere el saldo pendiente)' });
+    }
+};
 module.exports = {
     obtenerReservas,
     crearReserva, registrarCheckIn,
-    registrarCheckOut
+    registrarCheckOut, registrarPagoReserva,
+    consultarSaldoReserva
 };
