@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const articuloController = require('../controllers/articuloController');
+const c = require('../controllers/articuloController');
+const { verificarToken, permitirRoles } = require('../middlewares/authMiddleware');
 
-router.get('/', articuloController.obtenerArticulos);
-router.post('/', articuloController.crearArticulo);
-// Nueva ruta para registrar movimientos de artículos
-router.post('/movimientos', articuloController.registrarMovimiento);
+router.use(verificarToken);
+const todos = permitirRoles('Administrador', 'Recepcionista', 'Servicios generales');
+
+router.get('/', todos, c.obtenerArticulos);
+router.post('/', permitirRoles('Administrador'), c.crearArticulo);
+router.post('/movimientos', todos, c.registrarMovimiento); // el controlador limita el tipo según el rol
+
 module.exports = router;
-
-// Nota: Para proteger la ruta de registrar movimientos, puedes usar un middleware de autenticación y autorización. Por ejemplo:
-// 1. Importas el middleware de verificación de rol
-const { verificarRol } = require('../middlewares/authMiddleware');
-// 2. Lo insertas como segundo parámetro en la ruta que deseas proteger
-router.post('/articulos/movimientos', verificarRol([1, 2]), articuloController.registrarMovimiento);

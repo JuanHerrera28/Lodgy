@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const clienteController = require('../controllers/clienteController');
+const c = require('../controllers/clienteController');
+const { verificarToken, permitirRoles } = require('../middlewares/authMiddleware');
 
-router.get('/', clienteController.obtenerClientes);
-router.post('/', clienteController.crearCliente);
+router.use(verificarToken);
+const recepcion = permitirRoles('Administrador', 'Recepcionista');
+
+router.get('/', recepcion, c.obtenerClientes);
+router.post('/', recepcion, c.crearCliente);
 
 module.exports = router;

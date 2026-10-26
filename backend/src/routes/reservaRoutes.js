@@ -1,17 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const reservaController = require('../controllers/reservaController');
+const c = require('../controllers/reservaController');
+const { verificarToken, permitirRoles } = require('../middlewares/authMiddleware');
 
-router.get('/', reservaController.obtenerReservas);
+router.use(verificarToken);
+const recepcion = permitirRoles('Administrador', 'Recepcionista');
 
-router.post('/', reservaController.crearReserva);
+router.get('/', recepcion, c.obtenerReservas);
+router.post('/', recepcion, c.crearReserva);
+router.post('/:id/cancelar', recepcion, c.cancelarReserva);
 
-// Rutas para check-in y check-out
-router.post('/:id/checkin', reservaController.registrarCheckIn);
-router.post('/:id/checkout', reservaController.registrarCheckOut);
+router.post('/:id/checkin', recepcion, c.registrarCheckIn);
+router.post('/:id/checkout', recepcion, c.registrarCheckOut);
 
-// Nuevas rutas financieras
-router.get('/:id/saldo', reservaController.consultarSaldoReserva);
-router.post('/:id/pagos', reservaController.registrarPagoReserva);
+router.get('/:id/saldo', recepcion, c.consultarSaldoReserva);
+router.post('/:id/pagos', recepcion, c.registrarPagoReserva);
+router.post('/:id/cargos', recepcion, c.agregarCargoServicio);
 
 module.exports = router;
