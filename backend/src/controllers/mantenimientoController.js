@@ -22,5 +22,30 @@ const crearOrden = async (req, res) => {
         res.status(500).json({ error: 'Error al registrar el mantenimiento' });
     }
 };
+const cerrarOrden = async (req, res) => {
+    const { id } = req.params;
+    const { responsable, costo } = req.body;
 
-module.exports = { crearOrden };
+    try {
+        // Si ya creaste el procedimiento sp_cerrar_mantenimiento, reemplaza el UPDATE por:
+        // await db.query('CALL sp_cerrar_mantenimiento(?, ?, ?)', [id, responsable, costo]);
+
+        const [result] = await db.query(
+            `UPDATE Mantenimiento 
+            SET estado = 'Resuelta', responsable = ?, costo = ?, fecha_cierre = NOW() 
+            WHERE id_mantenimiento = ?`,
+            [responsable, costo, id]
+        );
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Orden de mantenimiento no encontrada' });
+        }
+
+        res.json({ mensaje: 'Orden de mantenimiento cerrada exitosamente' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al cerrar la orden de mantenimiento' });
+    }
+};
+
+module.exports = { crearOrden, cerrarOrden };
