@@ -18,7 +18,7 @@ app.use('/api/cabanas', require('./src/routes/cabanaRoutes'));
 app.use('/api/reservas', require('./src/routes/reservaRoutes'));
 app.use('/api/clientes', require('./src/routes/clienteRoutes'));
 app.use('/api/articulos', require('./src/routes/articuloRoutes'));
-
+app.use('/api/mantenimiento', require('./src/routes/mantenimientoRoutes'));
 // Inicialización del servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
