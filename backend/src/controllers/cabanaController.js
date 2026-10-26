@@ -22,5 +22,28 @@ const crearCabana = async (req, res) => {
         res.status(500).json({ error: 'Error al registrar la cabaña' });
     }
 };
+const consultarDisponibilidad = async (req, res) => {
+    const { fecha_inicio, fecha_fin } = req.query;
 
-module.exports = { obtenerCabanas, crearCabana };
+    if (!fecha_inicio || !fecha_fin) {
+        return res.status(400).json({ error: 'Debes incluir fecha_inicio y fecha_fin en la consulta' });
+    }
+
+    try {
+        const [cabanasLibres] = await db.query(`
+            SELECT * FROM Cabana 
+            WHERE id_cabana NOT IN (
+                SELECT id_cabana FROM Reserva 
+                WHERE id_estado_reserva NOT IN (3, 4) 
+                AND (fecha_entrada < ? AND fecha_salida > ?)
+            )
+        `, [fecha_fin, fecha_inicio]);
+
+        res.json(cabanasLibres);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al consultar las cabañas disponibles' });
+    }
+};
+
+module.exports = { obtenerCabanas, crearCabana, consultarDisponibilidad };
