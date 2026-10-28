@@ -21,6 +21,7 @@ app.use('/api/publico', require('./src/routes/publicoRoutes'));
 // Rutas privadas (exigen token y rol)
 app.use('/api/cabanas', require('./src/routes/cabanaRoutes'));
 app.use('/api/reservas', require('./src/routes/reservaRoutes'));
+app.use('/api/solicitudes', require('./src/routes/solicitudRoutes'));
 app.use('/api/clientes', require('./src/routes/clienteRoutes'));
 app.use('/api/articulos', require('./src/routes/articuloRoutes'));
 app.use('/api/mantenimiento', require('./src/routes/mantenimientoRoutes'));

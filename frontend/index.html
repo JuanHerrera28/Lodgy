@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lodgy · Cabañas playeras en Coveñas, Sucre</title>
+  <meta name="description" content="Cabañas de madera entre palmeras, piscina y brisa caribeña en Coveñas, Sucre. Un refugio entre naturaleza y mar.">
+  <meta name="theme-color" content="#F5EBDD">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lodgy · Cabañas playeras en Coveñas, Sucre">
+  <meta property="og:description" content="Cabañas de madera entre palmeras, piscina y brisa caribeña en Coveñas, Sucre.">
+  <meta property="og:image" content="assets/images/hero-cabin-sea-1200.jpg">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/images/hero-cabin-sea-2400.jpg" imagesrcset="assets/images/hero-cabin-sea-1200.jpg 1200w, assets/images/hero-cabin-sea-2400.jpg 2400w" imagesizes="100vw">
+  <link rel="stylesheet" href="css/tokens.css?v=20261026m">
+  <link rel="stylesheet" href="css/site.css?v=20261027a">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/api.js?v=20261026m" defer></script>
+  <script src="js/data.js?v=20261026m" defer></script>
+  <script src="js/site.js?v=20261027a" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- Sprite de iconos -->
+  <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="logo-mark" viewBox="0 0 48 48">
+      <path d="M24 39V20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M23.5 22C18.5 17.5 12 18 7.5 23.5c5.5 1.5 11.5.5 16-1.5Z" fill="currentColor"/>
+      <path d="M24.5 22c5-4.5 11.5-4 16 1.5-5.5 1.5-11.5.5-16-1.5Z" fill="currentColor" opacity=".82"/>
+      <path d="M23.5 26c-4.5-2.8-9.5-2.8-13.5.2 4 2 9 2 13.5-.2Z" fill="currentColor" opacity=".52"/>
+      <path d="M24.5 26c4.5-2.8 9.5-2.8 13.5.2-4 2-9 2-13.5-.2Z" fill="currentColor" opacity=".52"/>
+      <path d="M13 37c3.8 1.8 7.3 1.8 11 0s7.2-1.8 11 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="37.5" cy="11.5" r="2.5" fill="#A9D9D0"/>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+      <path d="M7 17 17 7M7 7h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M8 3v4M16 3v4M3.5 10h17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M5.2 20.5c.5-3.7 3-5.8 6.8-5.8s6.3 2.1 6.8 5.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+      <path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <path d="m5 12.5 4.3 4.3L19 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="m3.5 6 8.5 6.7L20.5 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24">
+      <path d="M7.2 3.8 9.6 8 7.9 9.7c1.1 2.4 3 4.3 5.4 5.4l1.7-1.7 4.2 2.4-.5 3.2c-.2 1-1 1.7-2 1.7C9.6 20.7 3.3 14.4 3.3 7.3c0-1 .7-1.8 1.7-2l2.2-.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24">
+      <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="icon-wifi" viewBox="0 0 24 24">
+      <path d="M3.5 9.5a13 13 0 0 1 17 0M6.5 13a8.5 8.5 0 0 1 11 0M9.5 16.5a4 4 0 0 1 5 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="12" cy="19.5" r=".9" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-air" viewBox="0 0 24 24">
+      <path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9M12 3l-2.2 2.2M12 3l2.2 2.2M12 21l-2.2-2.2M12 21l2.2-2.2M4.2 7.5l3-.8M4.2 7.5l.8 3M19.8 16.5l-3 .8M19.8 16.5l-.8-3M19.8 7.5l-3 .8M19.8 7.5l-.8 3M4.2 16.5l3 .8M4.2 16.5l.8-3" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-pool" viewBox="0 0 24 24">
+      <path d="M3 16.5c2.2 0 2.2 1.4 4.5 1.4s2.3-1.4 4.5-1.4 2.2 1.4 4.5 1.4 2.3-1.4 4.5-1.4M3 20c2.2 0 2.2 1.4 4.5 1.4S9.8 20 12 20s2.2 1.4 4.5 1.4S18.8 20 21 20M8 13V5.5A2.5 2.5 0 0 1 10.5 3M16 13V5.5A2.5 2.5 0 0 0 13.5 3M8 7h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-kitchen" viewBox="0 0 24 24">
+      <path d="M4.5 10h15v6.5a3.5 3.5 0 0 1-3.5 3.5H8a3.5 3.5 0 0 1-3.5-3.5V10ZM3 10h18M9 10V7.5h6V10M3 21h18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-parking" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M9.5 17V7h3.2a3.3 3.3 0 0 1 0 6.6H9.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-instagram" viewBox="0 0 24 24">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="17.3" cy="6.7" r="1" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-facebook" viewBox="0 0 24 24">
+      <path d="M14 21v-7h3l.5-4H14V8c0-1.1.4-2 2-2h1.7V2.5c-.8-.1-1.8-.2-2.8-.2-2.8 0-4.7 1.7-4.7 4.8V10H7v4h3.2v7H14Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+      <path d="M20.5 3.5A10 10 0 0 0 4.7 16.2L3.5 20.5l4.4-1.2A10 10 0 1 0 20.5 3.5Zm-8.4 15.2a8.2 8.2 0 0 1-4.1-1.1l-.3-.2-2.6.7.7-2.5-.2-.3a8.2 8.2 0 1 1 6.5 3.4Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.1-.2 0-.4.1-.5l.7-.8c.1-.2.1-.3 0-.5l-.8-1.7c-.1-.3-.3-.3-.5-.3h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.1s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.8 2.2.8 2.7.7 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24">
+      <path d="M12 3c.7 4.7 2.3 6.3 7 7-4.7.7-6.3 2.3-7 7-.7-4.7-2.3-6.3-7-7 4.7-.7 6.3-2.3 7-7Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header" id="inicio">
+    <div class="container nav-shell">
+      <a class="brand" href="#inicio" aria-label="Lodgy, volver al inicio">
+        <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true"><use href="#logo-mark"></use></svg>
+        <span class="brand__text">
+          <span class="brand__name">Lodgy</span>
+          <span class="brand__sub">Cabañas del Caribe</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#cabanas">Cabañas</a>
+        <a href="#experiencias">Experiencias</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
+
+      <a class="btn btn--primary nav-cta" href="#reservar">
+        Reservar
+        <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+      </a>
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="menu-toggle__lines" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+    <nav class="mobile-menu__nav" aria-label="Navegación móvil">
+      <a href="#cabanas"><span>01</span>Cabañas</a>
+      <a href="#experiencias"><span>02</span>Experiencias</a>
+      <a href="#servicios"><span>03</span>Servicios</a>
+      <a href="#ubicacion"><span>04</span>Ubicación</a>
+    </nav>
+    <div class="mobile-menu__foot">
+      <p id="mobile-cabins-copy">Cabañas de madera entre palmeras y mar.</p>
+      <a class="btn btn--primary" href="#reservar" data-close-menu>Reservar estancia</a>
+      <a class="mobile-menu__mail" href="mailto:reservas@lodgy.com">reservas@lodgy.com</a>
+    </div>
+  </div>
+
+  <main id="contenido">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__media">
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/images/hero-cabin-sea-1200.jpg">
+          <img
+            src="assets/images/hero-cabin-sea-2400.jpg"
+            srcset="assets/images/hero-cabin-sea-1200.jpg 1200w, assets/images/hero-cabin-sea-2400.jpg 2400w"
+            sizes="100vw"
+            alt="Cabaña de madera sobre pilotes en una playa de arena con olas del mar"
+            width="2400"
+            height="1800"
+            fetchpriority="high"
+            decoding="async">
+        </picture>
+      </div>
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="eyebrow eyebrow--on-dark">Cabañas playeras · Coveñas, Sucre</p>
+          <h1 id="hero-title">Despierta donde termina la arena.</h1>
+          <p class="hero__copy" id="hero-copy">Cabañas de madera entre palmeras, una piscina para las tardes largas y la brisa del Caribe como única urgencia.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#cabanas">
+              Explorar cabañas
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </a>
+            <a class="hero__secondary" href="#reservar">Reservar estancia</a>
+          </div>
+        </div>
+        <p class="hero__side-note" aria-hidden="true">Naturaleza · Mar · Calma</p>
+      </div>
+    </section>
+
+    <!-- Buscador -->
+    <section class="booking-band" id="reservar" aria-labelledby="booking-title">
+      <div class="container">
+        <div class="booking-panel">
+          <div class="booking-panel__intro">
+            <p class="eyebrow" id="booking-title">Tu estancia</p>
+            <p class="booking-panel__hint">Tarifas en pesos colombianos por noche y cabaña.</p>
+          </div>
+          <form class="booking-form" id="booking-form" novalidate>
+            <div class="booking-field">
+              <label for="checkin">Llegada</label>
+              <div class="booking-input">
+                <svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+                <input type="date" id="checkin" name="checkin" required>
+              </div>
+            </div>
+            <div class="booking-field">
+              <label for="checkout">Salida</label>
+              <div class="booking-input">
+                <svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+                <input type="date" id="checkout" name="checkout" required>
+              </div>
+            </div>
+            <div class="booking-field">
+              <label for="guests">Huéspedes</label>
+              <div class="booking-input">
+                <svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg>
+                <select id="guests" name="guests" required>
+                  <option value="1">1 huésped</option>
+                  <option value="2" selected>2 huéspedes</option>
+                  <option value="3">3 huéspedes</option>
+                  <option value="4">4 huéspedes</option>
+                  <option value="5">5 huéspedes</option>
+                  <option value="6">6 huéspedes</option>
+                  <option value="7">7 huéspedes</option>
+                  <option value="8">8 huéspedes</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn--primary booking-submit" type="submit">
+              Consultar disponibilidad
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </button>
+          </form>
+          <p class="booking-note" id="booking-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Presentación -->
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="container intro__grid">
+        <div class="intro__visual" data-reveal>
+          <figure class="intro__media">
+            <img
+              src="assets/images/intro-cabanas-palmas-1600.jpg"
+              srcset="assets/images/intro-cabanas-palmas-800.jpg 800w, assets/images/intro-cabanas-palmas-1600.jpg 1600w"
+              sizes="(max-width: 860px) 92vw, 55vw"
+              alt="Cabañas tropicales de playa entre palmeras y vegetación"
+              width="1600"
+              height="1067"
+              loading="lazy"
+              decoding="async">
+          </figure>
+          <p class="intro__caption">Cabañas entre palmeras · Coveñas, Sucre</p>
+        </div>
+
+        <div class="intro__copy" data-reveal style="--reveal-delay: 120ms">
+          <p class="eyebrow">La esencia</p>
+          <h2 id="intro-title">Un refugio entre naturaleza y mar</h2>
+          <p class="lead" id="intro-lead">Cabañas de madera, una piscina entre palmeras y el mar de Coveñas como único horizonte.</p>
+          <p class="body-copy">Lodgy nace para quienes buscan cambiar el ritmo: despertar con la brisa, comer sin prisa y dejar que la tarde se alargue junto al agua.</p>
+          <p class="body-copy">Cada cabaña tiene su propio carácter, pero todas comparten lo esencial: espacios luminosos, naturaleza alrededor y la atención de un equipo que conoce el territorio.</p>
+
+          <dl class="intro__stats">
+            <div>
+              <dt>Cabañas</dt>
+              <dd id="stat-cabins">—</dd>
+            </div>
+            <div>
+              <dt>Huéspedes</dt>
+              <dd id="stat-guests">—</dd>
+            </div>
+            <div>
+              <dt>Piscina</dt>
+              <dd id="stat-pool">—</dd>
+            </div>
+          </dl>
+
+          <a class="link-arrow" href="#cabanas">
+            Conocer las cabañas
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catálogo -->
+    <section class="cabins" id="cabanas" aria-labelledby="cabins-title">
+      <div class="container">
+        <header class="section-head section-head--split" data-reveal>
+          <div>
+            <p class="eyebrow">Alojamientos</p>
+            <h2 id="cabins-title">Formas de habitar Coveñas.</h2>
+          </div>
+          <div class="section-head__aside">
+            <p class="body-copy" id="cabins-capacity-copy">Elige la cabaña que mejor se ajuste a tu viaje.</p>
+            <p class="section-head__from" id="cabins-from">Tarifas según temporada</p>
+          </div>
+        </header>
+
+        <p class="catalog-context" id="catalog-context" role="status" aria-live="polite" hidden></p>
+
+        <div class="cabins-grid" id="cabins-grid" aria-live="polite"></div>
+
+        <noscript>
+          <p class="catalog-fallback">Activa JavaScript para ver el catálogo de cabañas.</p>
+        </noscript>
+
+        <div class="cabins-footer" data-reveal>
+          <p>¿No sabes cuál elegir? Te ayudamos a encontrar la cabaña correcta.</p>
+          <a class="link-arrow" href="mailto:reservas@lodgy.com">
+            Escríbenos
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios y experiencias -->
+    <section class="experiences" id="experiencias" aria-labelledby="experiences-title">
+      <div class="container">
+        <header class="section-head section-head--split" data-reveal>
+          <div>
+            <p class="eyebrow">Servicios y experiencias</p>
+            <h2 id="experiences-title">Todo lo necesario para no hacer nada.</h2>
+          </div>
+          <p class="body-copy section-head__aside">La piscina, una mesa junto al mar y una salida en lancha. Lo demás puede esperar.</p>
+        </header>
+
+        <div class="experience-grid">
+          <div class="experience-collage" data-reveal>
+            <figure class="experience-shot experience-shot--main">
+              <img
+                src="assets/images/piscina-1400.jpg"
+                srcset="assets/images/piscina-700.jpg 700w, assets/images/piscina-1400.jpg 1400w"
+                sizes="(max-width: 860px) 92vw, 40vw"
+                alt="Casa de madera junto a una piscina rodeada de vegetación"
+                width="1400"
+                height="934"
+                loading="lazy"
+                decoding="async">
+              <figcaption>Piscina</figcaption>
+            </figure>
+            <figure class="experience-shot">
+              <img
+                src="assets/images/experiencia-cena-1200.jpg"
+                srcset="assets/images/experiencia-cena-600.jpg 600w, assets/images/experiencia-cena-1200.jpg 1200w"
+                sizes="(max-width: 860px) 44vw, 20vw"
+                alt="Mesa de madera bajo una palmera junto al océano"
+                width="1200"
+                height="900"
+                loading="lazy"
+                decoding="async">
+              <figcaption>Mesa junto al mar</figcaption>
+            </figure>
+            <figure class="experience-shot">
+              <img
+                src="assets/images/experiencia-lancha-1400.jpg"
+                srcset="assets/images/experiencia-lancha-700.jpg 700w, assets/images/experiencia-lancha-1400.jpg 1400w"
+                sizes="(max-width: 860px) 44vw, 20vw"
+                alt="Personas viajando en lancha por el mar durante el día"
+                width="1400"
+                height="788"
+                loading="lazy"
+                decoding="async">
+              <figcaption>Paseo en lancha</figcaption>
+            </figure>
+          </div>
+
+          <div class="experience-copy" data-reveal style="--reveal-delay: 120ms">
+            <p class="eyebrow">A tu manera</p>
+            <h3>Experiencias para sumar a tu reserva</h3>
+            <p class="body-copy">Desayunos típicos, cenas sin horario y el mar visto desde una lancha. Todos los extras se agregan a tu estancia.</p>
+            <ul class="experience-list" id="experience-list"></ul>
+            <p class="fine-note">Precios en pesos colombianos. Los servicios adicionales se cargan a la reserva.</p>
+          </div>
+        </div>
+
+        <div class="included" id="servicios" aria-labelledby="included-title">
+          <div class="included__head" data-reveal>
+            <p class="eyebrow" id="included-title">Servicios incluidos</p>
+            <p>La disponibilidad de cada servicio depende de la cabaña.</p>
+          </div>
+          <ul class="included__list" id="included-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section class="location" id="ubicacion" aria-labelledby="location-title">
+      <div class="location__media" data-reveal>
+        <img
+          src="assets/images/ubicacion-caribe-1600.jpg"
+          srcset="assets/images/ubicacion-caribe-800.jpg 800w, assets/images/ubicacion-caribe-1600.jpg 1600w"
+          sizes="(max-width: 860px) 100vw, 52vw"
+          alt="Vista aérea de una playa con palmeras y agua turquesa"
+          width="1600"
+          height="822"
+          loading="lazy"
+          decoding="async">
+      </div>
+      <div class="location__copy" data-reveal style="--reveal-delay: 100ms">
+        <p class="eyebrow eyebrow--on-dark">Ubicación</p>
+        <h2 id="location-title">Coveñas, a tu ritmo.</h2>
+        <p class="location__lead">Lodgy está en Coveñas, Sucre, entre vegetación tropical y brisa de mar.</p>
+        <p class="location__body">La dirección exacta se comparte al confirmar la reserva para cuidar la tranquilidad del entorno. Si vienes desde otra ciudad, también podemos ayudarte con el traslado al aeropuerto.</p>
+
+        <dl class="location__details">
+          <div>
+            <dt>Ubicación</dt>
+            <dd>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Cove%C3%B1as%2C+Sucre%2C+Colombia" target="_blank" rel="noopener" aria-label="Ver Coveñas, Sucre en Google Maps">Coveñas, Sucre · Colombia</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Traslado</dt>
+            <dd>Servicio al aeropuerto disponible</dd>
+          </div>
+          <div>
+            <dt>Reservas</dt>
+            <dd><a href="mailto:reservas@lodgy.com">reservas@lodgy.com</a></dd>
+          </div>
+        </dl>
+
+        <div class="location__actions">
+          <a class="btn btn--sand" href="mailto:reservas@lodgy.com">
+            Hablar con reservas
+            <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+          </a>
+          <a class="location__link" id="whatsapp-link" href="https://wa.me/573209038259" target="_blank" rel="noopener">
+            WhatsApp
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand brand--footer" href="#inicio" aria-label="Lodgy, volver al inicio">
+            <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true"><use href="#logo-mark"></use></svg>
+            <span class="brand__text">
+              <span class="brand__name">Lodgy</span>
+              <span class="brand__sub">Cabañas del Caribe</span>
+            </span>
+          </a>
+          <p>Un refugio de madera entre palmeras, mar y brisa caribeña.</p>
+          <div class="footer-social" aria-label="Redes sociales">
+            <a href="#" aria-label="Instagram de Lodgy">
+              <svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg>
+            </a>
+            <a href="#" aria-label="Facebook de Lodgy">
+              <svg class="icon" aria-hidden="true"><use href="#icon-facebook"></use></svg>
+            </a>
+            <a href="https://wa.me/573000000000" target="_blank" rel="noopener" aria-label="WhatsApp de Lodgy">
+              <svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Explorar</h3>
+          <ul>
+            <li><a href="#cabanas">Cabañas</a></li>
+            <li><a href="#experiencias">Experiencias</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#ubicacion">Ubicación</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Contacto</h3>
+          <ul>
+            <li><a href="mailto:reservas@lodgy.com">reservas@lodgy.com</a></li>
+            <li><a href="tel:+573000000000">+57 300 000 0000</a></li>
+            <li><a href="https://wa.me/573000000000" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li class="footer-col__place">Coveñas, Sucre · Colombia</li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-col--cta">
+          <h3>Tu próxima pausa</h3>
+          <p>Cuéntanos tus fechas y te ayudamos a elegir la cabaña.</p>
+          <a class="btn btn--outline" href="#reservar">
+            Consultar
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span data-current-year>2026</span> Lodgy. Cabañas playeras en Coveñas, Sucre.</p>
+        <div class="footer-legal">
+          <a href="dashboard.html">Acceso al sistema</a>
+          <span aria-hidden="true">·</span>
+          <span>Fotografías de referencia</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Detalle de cabaña -->
+  <dialog class="cabin-dialog" id="cabin-dialog" aria-labelledby="dialog-title">
+    <div class="cabin-dialog__panel">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Cerrar detalle de la cabaña">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+      <div class="cabin-dialog__media" id="dialog-gallery">
+        <img id="dialog-image" class="gallery__image" src="" alt="" width="1400" height="934" decoding="async">
+
+        <button class="gallery__nav gallery__nav--prev" type="button" id="dialog-prev" aria-label="Imagen anterior">
+          <svg class="icon" aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+        </button>
+        <button class="gallery__nav gallery__nav--next" type="button" id="dialog-next" aria-label="Imagen siguiente">
+          <svg class="icon" aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+        </button>
+
+        <div class="gallery__footer">
+          <p class="gallery__caption" id="dialog-caption" aria-live="polite">Exterior</p>
+          <div class="gallery__dots" id="dialog-dots" role="group" aria-label="Elegir imagen de la cabaña"></div>
+          <p class="gallery__count" id="dialog-count">1 / 4</p>
+        </div>
+      </div>
+      <div class="cabin-dialog__body">
+        <p class="eyebrow" id="dialog-kicker">Cabaña</p>
+        <h2 id="dialog-title">Cabaña</h2>
+        <p class="body-copy" id="dialog-description"></p>
+
+        <div class="dialog-meta">
+          <div>
+            <span class="dialog-meta__label">Capacidad</span>
+            <strong id="dialog-capacity">—</strong>
+          </div>
+          <div>
+            <span class="dialog-meta__label">Desde</span>
+            <strong id="dialog-price">—</strong>
+          </div>
+        </div>
+
+        <div class="dialog-services">
+          <p class="dialog-services__title">Incluye</p>
+          <ul id="dialog-services"></ul>
+        </div>
+
+        <div class="dialog-actions">
+          <button class="btn btn--primary" type="button" id="dialog-book">
+            Reservar esta cabaña
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+          </button>
+          <a class="link-arrow" href="mailto:reservas@lodgy.com">Preguntar por disponibilidad</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Solicitud de reserva -->
+  <dialog class="cabin-dialog request-dialog" id="request-dialog" aria-labelledby="request-title">
+    <div class="request-dialog__panel">
+      <button class="dialog-close" type="button" data-close-request aria-label="Cerrar solicitud">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+
+      <div id="request-form-wrap">
+        <div class="request-dialog__head">
+          <p class="eyebrow">Solicitud de reserva</p>
+          <h2 id="request-title">Solicita tu estancia</h2>
+          <p class="body-copy">
+            Revisaremos la disponibilidad y te contactaremos para confirmar. Enviar la solicitud no bloquea las fechas.
+          </p>
+        </div>
+
+        <div class="request-summary" id="request-summary" aria-live="polite"></div>
+
+        <form class="request-form" id="request-form" novalidate>
+          <div class="request-grid">
+            <div class="request-field">
+              <label for="request-doc-type">Tipo de documento</label>
+              <select id="request-doc-type" name="tipo_documento" aria-describedby="request-doc-type-error" required>
+                <option value="CC" selected>CC · Cédula</option>
+                <option value="CE">CE · Extranjería</option>
+                <option value="TI">TI · Tarjeta de identidad</option>
+                <option value="Pasaporte">Pasaporte</option>
+              </select>
+              <p class="request-error" id="request-doc-type-error" role="alert"></p>
+            </div>
+            <div class="request-field">
+              <label for="request-doc-number">Número de documento</label>
+              <input type="text" id="request-doc-number" name="numero_documento" maxlength="20"
+                autocomplete="off" aria-describedby="request-doc-number-error" required>
+              <p class="request-error" id="request-doc-number-error" role="alert"></p>
+            </div>
+            <div class="request-field">
+              <label for="request-name">Nombre</label>
+              <input type="text" id="request-name" name="nombre" maxlength="60" autocomplete="given-name"
+                aria-describedby="request-name-error" required>
+              <p class="request-error" id="request-name-error" role="alert"></p>
+            </div>
+            <div class="request-field">
+              <label for="request-lastname">Apellido</label>
+              <input type="text" id="request-lastname" name="apellido" maxlength="60" autocomplete="family-name"
+                aria-describedby="request-lastname-error" required>
+              <p class="request-error" id="request-lastname-error" role="alert"></p>
+            </div>
+            <div class="request-field">
+              <label for="request-phone">Teléfono</label>
+              <input type="tel" id="request-phone" name="telefono" maxlength="20" autocomplete="tel"
+                aria-describedby="request-phone-error" required>
+              <p class="request-error" id="request-phone-error" role="alert"></p>
+            </div>
+            <div class="request-field">
+              <label for="request-email">Correo <span>(opcional)</span></label>
+              <input type="email" id="request-email" name="correo" maxlength="100" autocomplete="email"
+                aria-describedby="request-email-error">
+              <p class="request-error" id="request-email-error" role="alert"></p>
+            </div>
+            <div class="request-field request-field--full">
+              <label for="request-observations">Comentarios <span>(opcional)</span></label>
+              <textarea id="request-observations" name="observaciones" rows="2" maxlength="300"
+                placeholder="Cuéntanos si viajas con niños, llegas tarde o necesitas algo especial."></textarea>
+            </div>
+          </div>
+
+          <div class="request-honeypot" aria-hidden="true">
+            <label for="request-website">Sitio web</label>
+            <input type="text" id="request-website" name="sitio_web" tabindex="-1" autocomplete="off">
+          </div>
+
+          <p class="request-note" id="request-note" role="alert" aria-live="assertive"></p>
+
+          <div class="request-actions">
+            <button class="btn btn--primary" type="submit" id="request-submit">
+              <span data-request-submit-label>Enviar solicitud</span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </button>
+            <button class="link-arrow" type="button" data-close-request>Cancelar</button>
+          </div>
+
+          <p class="request-fineprint">
+            Al enviar aceptas que el equipo de Lodgy te contacte por teléfono o correo para confirmar la reserva.
+            No se realizan cobros desde este formulario.
+          </p>
+        </form>
+      </div>
+
+      <div class="request-success" id="request-success" hidden>
+        <p class="eyebrow">Solicitud recibida</p>
+        <h2 id="request-success-title" tabindex="-1">Gracias por escribirnos</h2>
+        <p class="body-copy" id="request-success-copy"></p>
+        <div class="request-summary" id="request-success-summary"></div>
+        <p class="request-fineprint">
+          Guarda tu referencia <strong id="request-success-ref"></strong>.
+          Te contactaremos al teléfono indicado para confirmar la reserva.
+        </p>
+        <div class="request-actions">
+          <button class="btn btn--primary" type="button" data-close-request>Entendido</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

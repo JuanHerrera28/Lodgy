@@ -30,7 +30,13 @@ const login = async (req, res) => {
 
         res.json({
             token,
-            usuario: { id: u.id_usuario, nombre: `${u.nombre} ${u.apellido}`, rol: u.rol }
+            usuario: {
+                id: u.id_usuario,
+                nombre: u.nombre,
+                apellido: u.apellido,
+                correo: u.correo,
+                rol: u.rol
+            }
         });
     } catch (error) {
         responderError(res, error, 'Error al iniciar sesión');
@@ -38,6 +44,28 @@ const login = async (req, res) => {
 };
 
 // Devuelve los datos de la sesión actual (útil para el frontend)
-const yo = (req, res) => res.json(req.usuario);
+const yo = async (req, res) => {
+    try {
+        const [rows] = await db.query(
+            `SELECT u.id_usuario, u.nombre, u.apellido, u.correo, u.activo, r.nombre AS rol
+             FROM Usuario u JOIN Rol r ON r.id_rol = u.id_rol
+             WHERE u.id_usuario = ?`, [req.usuario.id]);
+        const u = rows[0];
+
+        if (!u || !u.activo) {
+            return res.status(401).json({ error: 'Sesión inválida o vencida' });
+        }
+
+        res.json({
+            id: u.id_usuario,
+            nombre: u.nombre,
+            apellido: u.apellido,
+            correo: u.correo,
+            rol: u.rol
+        });
+    } catch (error) {
+        responderError(res, error, 'Error al consultar la sesión');
+    }
+};
 
 module.exports = { login, yo };

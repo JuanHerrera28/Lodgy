@@ -1,4 +1,33 @@
-USE DELIMITER //
+USE lodgy;
+
+-- 1. Primero se crea la vista
+CREATE OR REPLACE VIEW v_saldo_reserva AS
+SELECT x.*,
+       (x.total_alojamiento + x.total_servicios + x.total_productos)            AS total,
+       (x.total_alojamiento + x.total_servicios + x.total_productos - x.pagado) AS saldo
+FROM (
+    SELECT r.id_reserva,
+           r.id_cliente,
+           r.id_cabana,
+           er.nombre AS estado,
+           DATEDIFF(r.fecha_salida, r.fecha_entrada)                      AS noches,
+           DATEDIFF(r.fecha_salida, r.fecha_entrada) * r.precio_noche     AS total_alojamiento,
+           COALESCE((SELECT SUM(cs.cantidad * cs.precio_cobrado)
+                     FROM Cargo_Servicio cs
+                     WHERE cs.id_reserva = r.id_reserva), 0)              AS total_servicios,
+           COALESCE((SELECT SUM(ri.cantidad * ri.precio_unitario)
+                     FROM Registro_Inventario ri
+                     WHERE ri.id_reserva = r.id_reserva
+                       AND ri.tipo_movimiento = 'Venta'), 0)              AS total_productos,
+           COALESCE((SELECT SUM(p.monto)
+                     FROM Pago p
+                     WHERE p.id_reserva = r.id_reserva), 0)               AS pagado
+    FROM Reserva r
+    JOIN Estado_Reserva er ON er.id_estado_reserva = r.id_estado_reserva
+) x;
+
+-- 2. Luego se crea el procedimiento que usa la vista
+DELIMITER //
 
 DROP PROCEDURE IF EXISTS sp_registrar_pago //
 CREATE PROCEDURE sp_registrar_pago(

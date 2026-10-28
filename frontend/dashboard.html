@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel · Lodgy</title>
+  <meta name="description" content="Panel operativo y administración de Lodgy: cabañas, reservas, clientes, inventario y mantenimiento.">
+  <meta name="theme-color" content="#24443B">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/tokens.css?v=20261026m">
+  <link rel="stylesheet" href="css/dashboard.css?v=20261027a">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/api.js?v=20261026m" defer></script>
+  <script src="js/data.js?v=20261026m" defer></script>
+  <script src="js/dashboard.js?v=20261027a" defer></script>
+</head>
+
+<body class="dashboard-body is-login">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="logo-mark" viewBox="0 0 48 48">
+      <path d="M24 39V20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M23.5 22C18.5 17.5 12 18 7.5 23.5c5.5 1.5 11.5.5 16-1.5Z" fill="currentColor" />
+      <path d="M24.5 22c5-4.5 11.5-4 16 1.5-5.5 1.5-11.5.5-16-1.5Z" fill="currentColor" opacity=".82" />
+      <path d="M23.5 26c-4.5-2.8-9.5-2.8-13.5.2 4 2 9 2 13.5-.2Z" fill="currentColor" opacity=".52" />
+      <path d="M24.5 26c4.5-2.8 9.5-2.8 13.5.2-4 2-9 2-13.5-.2Z" fill="currentColor" opacity=".52" />
+      <path d="M13 37c3.8 1.8 7.3 1.8 11 0s7.2-1.8 11 0" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" />
+      <circle cx="37.5" cy="11.5" r="2.5" fill="#A9D9D0" />
+    </symbol>
+    <symbol id="icon-grid" viewBox="0 0 24 24">
+      <rect x="3.5" y="3.5" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <rect x="13.5" y="3.5" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <rect x="3.5" y="13.5" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <rect x="13.5" y="13.5" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" />
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="M8 3v4M16 3v4M3.5 10h17M8 14h3M8 17h7" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24">
+      <circle cx="9" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="M3 20c.4-3.4 2.6-5.4 6-5.4s5.6 2 6 5.4M16 5.2a3 3 0 0 1 0 5.6M17 14.8c2.2.4 3.6 2 3.9 4.4" fill="none"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-boxes" viewBox="0 0 24 24">
+      <path d="m12 3 4 2.2v4.4L12 12l-4-2.4V5.2L12 3Z" fill="none" stroke="currentColor" stroke-width="1.4"
+        stroke-linejoin="round" />
+      <path d="m6 12 4 2.2v4.4L6 21l-4-2.4v-4.4L6 12Zm12 0 4 2.2v4.4L18 21l-4-2.4v-4.4L18 12Z" fill="none"
+        stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-wrench" viewBox="0 0 24 24">
+      <path d="M14.5 6.5a4.5 4.5 0 0 0 5.8 5.8l-8.6 8.6a2.4 2.4 0 0 1-3.4 0l-2.4-2.4a2.4 2.4 0 0 1 0-3.4l8.6-8.6Z"
+        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+      <path d="m5.6 3.5 3 3M3.5 5.6l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24">
+      <path d="M12 3 5 6v5c0 4.2 2.4 7.8 7 10 4.6-2.2 7-5.8 7-10V6l-7-3Z" fill="none" stroke="currentColor"
+        stroke-width="1.5" stroke-linejoin="round" />
+      <path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+      <path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24">
+      <path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24">
+      <path d="M14 4h4.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H14M10 8l-4 4 4 4M6 12h10" fill="none"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+      <path d="M7 17 17 7M7 7h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <path d="m5 12.5 4.3 4.3L19 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-check-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="m8 12.3 2.5 2.5L16 9.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-bed" viewBox="0 0 24 24">
+      <path d="M3.5 19v-8.5M3.5 15h17M20.5 19v-5.5a3 3 0 0 0-3-3h-7v4.5M3.5 10.5h3.8a2 2 0 0 1 2 2v2.5M6 7.5h4"
+        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24">
+      <path d="M12 3c.7 4.7 2.3 6.3 7 7-4.7.7-6.3 2.3-7 7-.7-4.7-2.3-6.3-7-7 4.7-.7 6.3-2.3 7-7Z" fill="none"
+        stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
+      <path d="M19 16c.3 1.7.8 2.2 2.5 2.5-1.7.3-2.2.8-2.5 2.5-.3-1.7-.8-2.2-2.5-2.5 1.7-.3 2.2-.8 2.5-2.5Z"
+        fill="currentColor" opacity=".65" />
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="M5.2 20.5c.5-3.7 3-5.8 6.8-5.8s6.3 2.1 6.8 5.8" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24">
+      <path
+        d="M7.2 3.8 9.6 8 7.9 9.7c1.1 2.4 3 4.3 5.4 5.4l1.7-1.7 4.2 2.4-.5 3.2c-.2 1-1 1.7-2 1.7C9.6 20.7 3.3 14.4 3.3 7.3c0-1 .7-1.8 1.7-2l2.2-.5Z"
+        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="m3.5 6 8.5 6.7L20.5 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="M12 7v5.4l3.2 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-home" viewBox="0 0 24 24">
+      <path d="m3.5 10.5 8.5-7 8.5 7M5.5 9.2V20h13V9.2M9.5 20v-5.5h5V20" fill="none" stroke="currentColor"
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-alert" viewBox="0 0 24 24">
+      <path d="M12 3.5 21 20H3L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+      <path d="M12 9v5M12 17.2v.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24">
+      <path d="M4 20h4L20 8l-4-4L4 16v4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+      <path d="m14 6 4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24">
+      <path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6S2.5 12 2.5 12Z" fill="none" stroke="currentColor"
+        stroke-width="1.5" stroke-linejoin="round" />
+      <circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5" />
+    </symbol>
+    <symbol id="icon-eye-off" viewBox="0 0 24 24">
+      <path d="M4 4l16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M9.6 6a9.9 9.9 0 0 1 2.4-.4c6 0 9.5 6.4 9.5 6.4a17.4 17.4 0 0 1-3.2 4M6 7.9A17.6 17.6 0 0 0 2.5 12S6 18.4 12 18.4c1 0 2-.2 2.9-.5"
+        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </symbol>
+  </svg>
+
+  <section class="login" id="login-screen" aria-labelledby="login-title">
+    <div class="login__panel">
+      <a class="brand login__brand" href="index.html" aria-label="Lodgy Administración, ir a la web pública">
+        <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true">
+          <use href="#logo-mark"></use>
+        </svg>
+        <span class="brand__text">
+          <span class="brand__name">Lodgy</span>
+          <span class="brand__sub">Administración</span>
+        </span>
+      </a>
+
+      <div class="login__copy">
+        <p class="eyebrow">Acceso del equipo</p>
+        <h1 id="login-title">La operación empieza aquí.</h1>
+        <p class="login__lead">
+          Entra con tu cuenta para revisar el estado de las cabañas y administrar el catálogo.
+        </p>
+      </div>
+
+      <form class="login__form" id="login-form" novalidate>
+        <div class="form-field">
+          <label for="login-correo">Correo</label>
+          <input id="login-correo" name="correo" type="email" autocomplete="username" inputmode="email"
+            placeholder="nombre@lodgy.com" required>
+        </div>
+
+        <div class="form-field">
+          <label for="login-contrasena">Contraseña</label>
+          <div class="login__password">
+            <input id="login-contrasena" name="contrasena" type="password" autocomplete="current-password" required>
+            <button class="login__toggle" id="login-toggle" type="button" aria-pressed="false"
+              aria-label="Mostrar contraseña">Mostrar</button>
+          </div>
+        </div>
+
+        <p class="login__note" id="login-note" role="status" aria-live="polite"></p>
+
+        <button class="btn btn--primary login__submit" id="login-submit" type="submit">Entrar</button>
+      </form>
+
+      <div class="login__foot">
+        <a class="login__back" href="index.html">Volver a la web pública</a>
+        <p>Acceso restringido al equipo de Lodgy.</p>
+      </div>
+    </div>
+
+    <aside class="login__aside" aria-hidden="true">
+      <p class="login__aside-eyebrow">Coveñas, Sucre</p>
+      <p class="login__aside-title">Cabañas, reservas y servicios en un solo lugar.</p>
+      <p class="login__aside-note">Sistema interno · Lodgy</p>
+    </aside>
+  </section>
+
+  <div class="session-loader" id="session-loader" role="status" aria-live="polite" hidden>
+    <span class="session-loader__spinner" aria-hidden="true"></span>
+    <p>Comprobando tu sesión…</p>
+  </div>
+
+  <div class="admin-shell" id="admin-shell" hidden>
+    <aside class="sidebar" id="sidebar" aria-label="Menú de administración">
+      <div class="sidebar__top">
+        <a class="brand" href="index.html" aria-label="Lodgy Administración, ir a la web pública">
+          <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true">
+            <use href="#logo-mark"></use>
+          </svg>
+          <span class="brand__text">
+            <span class="brand__name">Lodgy</span>
+            <span class="brand__sub">Administración</span>
+          </span>
+        </a>
+        <button class="sidebar__close" id="sidebar-close" type="button" aria-label="Cerrar menú">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-close"></use>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar__nav">
+        <p class="sidebar__label">Operación</p>
+        <a class="sidebar__link is-active" href="#panel" data-module="panel" data-permission="panel"
+          aria-current="page">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-grid"></use>
+          </svg>
+          <span>Panel</span>
+        </a>
+        <a class="sidebar__link" href="#reservas" data-module="reservas" data-permission="reservas">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-calendar"></use>
+          </svg>
+          <span>Reservas</span>
+        </a>
+
+        <p class="sidebar__label">Gestión</p>
+        <a class="sidebar__link" href="#clientes" data-module="clientes" data-permission="clientes">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-users"></use>
+          </svg>
+          <span>Clientes</span>
+        </a>
+        <a class="sidebar__link" href="#inventario" data-module="inventario" data-permission="inventario">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-boxes"></use>
+          </svg>
+          <span>Inventario</span>
+        </a>
+
+        <p class="sidebar__label">Sistema</p>
+        <a class="sidebar__link" href="#mantenimiento" data-module="mantenimiento" data-permission="mantenimiento">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-wrench"></use>
+          </svg>
+          <span>Mantenimiento</span>
+        </a>
+        <a class="sidebar__link" href="#administracion" data-module="administracion" data-permission="administracion">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-shield"></use>
+          </svg>
+          <span>Administración</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__foot">
+        <div class="sidebar__status">
+          <span class="sidebar__status-dot" aria-hidden="true"></span>
+          <span>Base de datos conectada</span>
+          <span class="sidebar__demo sidebar__demo--live">En vivo</span>
+        </div>
+        <a class="sidebar__site" href="index.html">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-arrow-up-right"></use>
+          </svg>
+          Ver web pública
+        </a>
+      </div>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+    <div class="admin-main">
+      <header class="topbar">
+        <button class="topbar__menu" id="sidebar-toggle" type="button" aria-controls="sidebar" aria-expanded="false"
+          aria-label="Abrir menú de administración">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-menu"></use>
+          </svg>
+        </button>
+
+        <div class="topbar__context">
+          <span class="topbar__eyebrow">Administración</span>
+          <span class="topbar__separator" aria-hidden="true"></span>
+          <span class="topbar__date" id="today-date"></span>
+        </div>
+
+        <div class="topbar__user">
+          <span class="user-avatar" id="user-avatar">LO</span>
+          <span class="user-info">
+            <strong id="user-name">Equipo Lodgy</strong>
+            <span id="user-role">Sesión</span>
+          </span>
+          <button class="topbar__logout" id="logout-btn" type="button" aria-label="Salir y cerrar sesión">
+            <svg class="icon" aria-hidden="true">
+              <use href="#icon-logout"></use>
+            </svg>
+            <span>Salir</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="admin-content" id="contenido">
+        <div class="admin-view" id="view-panel">
+          <header class="page-head">
+            <div class="page-head__copy">
+              <p class="eyebrow">Panel general</p>
+              <h1 id="panel-title" tabindex="-1"><span id="greeting-time">Buenos días</span>, <span id="greeting-name">Ana</span>.</h1>
+              <p>Revisa el estado operativo de las cabañas y las llegadas de hoy.</p>
+            </div>
+            <div class="page-head__actions">
+              <span class="demo-badge demo-badge--live">Datos en vivo</span>
+              <button class="btn btn--outline refresh-btn" id="refresh-btn" type="button">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#icon-refresh"></use>
+                </svg>
+                Actualizar datos
+              </button>
+              <span class="updated-at" id="updated-at">Consultando la base de datos…</span>
+            </div>
+          </header>
+
+          <section class="stats-grid" aria-label="Resumen de cabañas">
+            <article class="stat-card stat-card--available">
+              <div class="stat-card__top">
+                <span class="stat-card__label">Disponibles</span>
+                <svg class="stat-card__icon" aria-hidden="true">
+                  <use href="#icon-check-circle"></use>
+                </svg>
+              </div>
+              <div class="stat-card__value">
+                <strong data-count="Disponible">0</strong>
+                <span>de 5</span>
+              </div>
+              <p class="stat-card__meta">Listas para recibir huéspedes</p>
+            </article>
+
+            <article class="stat-card stat-card--occupied">
+              <div class="stat-card__top">
+                <span class="stat-card__label">Ocupadas</span>
+                <svg class="stat-card__icon" aria-hidden="true">
+                  <use href="#icon-bed"></use>
+                </svg>
+              </div>
+              <div class="stat-card__value">
+                <strong data-count="Ocupada">0</strong>
+                <span>de 5</span>
+              </div>
+              <p class="stat-card__meta">Con huéspedes alojados</p>
+            </article>
+
+            <article class="stat-card stat-card--cleaning">
+              <div class="stat-card__top">
+                <span class="stat-card__label">En limpieza</span>
+                <svg class="stat-card__icon" aria-hidden="true">
+                  <use href="#icon-spark"></use>
+                </svg>
+              </div>
+              <div class="stat-card__value">
+                <strong data-count="En Limpieza">0</strong>
+                <span>de 5</span>
+              </div>
+              <p class="stat-card__meta">Pendientes de limpieza</p>
+            </article>
+
+            <article class="stat-card stat-card--maintenance">
+              <div class="stat-card__top">
+                <span class="stat-card__label">En mantenimiento</span>
+                <svg class="stat-card__icon" aria-hidden="true">
+                  <use href="#icon-wrench"></use>
+                </svg>
+              </div>
+              <div class="stat-card__value">
+                <strong data-count="En Mantenimiento">0</strong>
+                <span>de 5</span>
+              </div>
+              <p class="stat-card__meta">Fuera de servicio</p>
+            </article>
+          </section>
+
+          <section class="operations" id="panel" aria-labelledby="operations-title">
+            <header class="operations__head">
+              <div class="operations__title">
+                <p class="eyebrow">Operación</p>
+                <h2 id="operations-title">Cabañas</h2>
+                <p><span id="total-cabins">5</span> unidades registradas</p>
+              </div>
+
+              <div class="filter-tabs" role="group" aria-label="Filtrar cabañas por estado">
+                <button class="filter-tab is-active" type="button" data-filter="all" aria-pressed="true">
+                  Todas <span data-filter-count="all">5</span>
+                </button>
+                <button class="filter-tab" type="button" data-filter="Disponible" aria-pressed="false">
+                  Disponibles <span data-filter-count="Disponible">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-filter="Ocupada" aria-pressed="false">
+                  Ocupadas <span data-filter-count="Ocupada">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-filter="En Limpieza" aria-pressed="false">
+                  Limpieza <span data-filter-count="En Limpieza">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-filter="En Mantenimiento" aria-pressed="false">
+                  Mantenimiento <span data-filter-count="En Mantenimiento">0</span>
+                </button>
+              </div>
+            </header>
+
+            <div class="admin-cabins" id="admin-cabins" aria-live="polite"></div>
+          </section>
+
+          <p class="admin-footnote">
+            Datos en vivo desde la API de Lodgy: <code>/api/cabanas</code> y <code>/api/reservas</code>,
+            con la sesión del usuario. Clientes, Inventario y Mantenimiento siguen en preparación.
+          </p>
+        </div>
+
+        <div class="admin-view" id="view-reservas" hidden>
+          <header class="page-head">
+            <div class="page-head__copy">
+              <p class="eyebrow">Operación</p>
+              <h1 id="reservas-title" tabindex="-1">Reservas</h1>
+              <p>Registra nuevas estancias, valida la disponibilidad y cierra cada reserva con su check-in y check-out.</p>
+            </div>
+            <div class="page-head__actions">
+              <span class="demo-badge demo-badge--live">Datos en vivo</span>
+              <button class="btn btn--primary" id="new-reservation-btn" type="button">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#icon-plus"></use>
+                </svg>
+                Nueva reserva
+              </button>
+            </div>
+          </header>
+
+          <section class="catalog-summary" aria-label="Resumen de reservas">
+            <div>
+              <span>Confirmadas</span>
+              <strong id="summary-res-confirmed">0</strong>
+            </div>
+            <div>
+              <span>En curso</span>
+              <strong id="summary-res-in-progress">0</strong>
+            </div>
+            <div>
+              <span>Finalizadas</span>
+              <strong id="summary-res-finished">0</strong>
+            </div>
+            <div>
+              <span>Canceladas</span>
+              <strong id="summary-res-cancelled">0</strong>
+            </div>
+          </section>
+
+          <section class="catalog" aria-labelledby="reservas-title">
+            <div class="catalog-toolbar">
+              <div class="catalog-search">
+                <label for="reservations-search">Buscar reserva</label>
+                <div class="catalog-search__field">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#icon-search"></use>
+                  </svg>
+                  <input type="search" id="reservations-search" placeholder="Cliente, documento o cabaña"
+                    autocomplete="off">
+                </div>
+              </div>
+
+              <div class="filter-tabs" role="group" aria-label="Filtrar reservas por estado">
+                <button class="filter-tab is-active" type="button" data-reservation-filter="todas"
+                  aria-pressed="true">
+                  Todas <span data-reservation-count="todas">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-reservation-filter="Confirmada" aria-pressed="false">
+                  Confirmadas <span data-reservation-count="Confirmada">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-reservation-filter="En curso" aria-pressed="false">
+                  En curso <span data-reservation-count="En curso">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-reservation-filter="Finalizada" aria-pressed="false">
+                  Finalizadas <span data-reservation-count="Finalizada">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-reservation-filter="Cancelada" aria-pressed="false">
+                  Canceladas <span data-reservation-count="Cancelada">0</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="reservation-list" id="reservations-list" aria-live="polite"></div>
+          </section>
+
+          <section class="catalog requests-panel" aria-labelledby="requests-title">
+            <div class="catalog-toolbar">
+              <div class="operations__title">
+                <h2 id="requests-title">Solicitudes web</h2>
+                <p>Pendientes de revisión. Al aprobar se crea la reserva con la tarifa vigente.</p>
+              </div>
+
+              <div class="filter-tabs" role="group" aria-label="Filtrar solicitudes por estado">
+                <button class="filter-tab is-active" type="button" data-request-filter="todas" aria-pressed="true">
+                  Todas <span data-request-count="todas">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-request-filter="Pendiente" aria-pressed="false">
+                  Pendientes <span data-request-count="Pendiente">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-request-filter="Aprobada" aria-pressed="false">
+                  Aprobadas <span data-request-count="Aprobada">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-request-filter="Rechazada" aria-pressed="false">
+                  Rechazadas <span data-request-count="Rechazada">0</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="request-list" id="requests-list" aria-live="polite"></div>
+          </section>
+
+          <p class="admin-footnote">
+            El precio y el estado los define la base de datos: toda reserva nace <strong>Confirmada</strong> con
+            la tarifa vigente de la cabaña. Los cruces de fechas y la capacidad se validan al guardar.
+          </p>
+        </div>
+
+        <div class="admin-view" id="view-administracion" hidden>
+          <header class="page-head">
+            <div class="page-head__copy">
+              <p class="eyebrow">Administración</p>
+              <h1 id="catalog-title" tabindex="-1">Cabañas</h1>
+              <p>Registra, edita y desactiva las cabañas del catálogo. Los servicios incluidos se asignan por cabaña.</p>
+            </div>
+            <div class="page-head__actions">
+              <span class="demo-badge demo-badge--live">Datos en vivo</span>
+              <button class="btn btn--primary" id="new-cabin-btn" type="button">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#icon-plus"></use>
+                </svg>
+                Nueva cabaña
+              </button>
+            </div>
+          </header>
+
+          <section class="catalog-summary" aria-label="Resumen del catálogo">
+            <div>
+              <span>Total</span>
+              <strong id="summary-total">0</strong>
+            </div>
+            <div>
+              <span>Publicadas</span>
+              <strong id="summary-active">0</strong>
+            </div>
+            <div>
+              <span>Desactivadas</span>
+              <strong id="summary-inactive">0</strong>
+            </div>
+            <div>
+              <span>Recomendadas</span>
+              <strong id="summary-featured">0</strong>
+            </div>
+          </section>
+
+          <section class="catalog" aria-labelledby="catalog-title">
+            <div class="catalog-toolbar">
+              <div class="catalog-search">
+                <label for="catalog-search">Buscar cabaña</label>
+                <div class="catalog-search__field">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#icon-search"></use>
+                  </svg>
+                  <input type="search" id="catalog-search" placeholder="Nombre o descripción" autocomplete="off">
+                </div>
+              </div>
+
+              <div class="filter-tabs" role="group" aria-label="Filtrar cabañas por publicación">
+                <button class="filter-tab is-active" type="button" data-catalog-filter="todas" aria-pressed="true">
+                  Todas <span data-catalog-count="todas">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-catalog-filter="publicadas" aria-pressed="false">
+                  Publicadas <span data-catalog-count="publicadas">0</span>
+                </button>
+                <button class="filter-tab" type="button" data-catalog-filter="desactivadas" aria-pressed="false">
+                  Desactivadas <span data-catalog-count="desactivadas">0</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="catalog-list" id="catalog-list" aria-live="polite"></div>
+          </section>
+
+          <p class="admin-footnote">
+            Las cabañas no se eliminan: se desactivan y dejan de aparecer en la web pública.
+            Los cambios se guardan en la base de datos y se reflejan de inmediato en el catálogo.
+          </p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="admin-dialog" id="detail-dialog" aria-labelledby="detail-title">
+    <div class="admin-dialog__panel">
+      <header class="admin-dialog__head">
+        <div>
+          <p class="eyebrow" id="detail-kicker">Detalle</p>
+          <h2 id="detail-title">Cabaña</h2>
+        </div>
+        <button class="dialog-close" type="button" data-close-detail aria-label="Cerrar detalle">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-close"></use>
+          </svg>
+        </button>
+      </header>
+      <div class="admin-dialog__body" id="detail-content"></div>
+    </div>
+  </dialog>
+
+  <dialog class="admin-dialog admin-dialog--form" id="cabin-form-dialog" aria-labelledby="cabin-form-title">
+    <div class="admin-dialog__panel">
+      <header class="admin-dialog__head">
+        <div>
+          <p class="eyebrow" id="cabin-form-kicker">Catálogo</p>
+          <h2 id="cabin-form-title">Nueva cabaña</h2>
+        </div>
+        <button class="dialog-close" type="button" data-close-cabin-form aria-label="Cerrar formulario">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-close"></use>
+          </svg>
+        </button>
+      </header>
+
+      <div class="admin-dialog__body">
+        <form id="cabin-form" novalidate>
+          <div class="form-grid">
+            <div class="form-field form-field--full">
+              <label for="cabin-name">Nombre</label>
+              <input id="cabin-name" name="nombre" type="text" maxlength="50" autocomplete="off" required
+                aria-describedby="cabin-name-error">
+              <p class="form-error" id="cabin-name-error"></p>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="cabin-description">Descripción</label>
+              <textarea id="cabin-description" name="descripcion" rows="2" maxlength="500"></textarea>
+              <p class="form-hint">Una línea que resuma la cabaña en la web pública.</p>
+            </div>
+
+            <div class="form-field">
+              <label for="cabin-capacity">Capacidad</label>
+              <input id="cabin-capacity" name="capacidad" type="number" min="1" max="99" step="1" required
+                aria-describedby="cabin-capacity-error">
+              <p class="form-error" id="cabin-capacity-error"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="cabin-price">Precio por noche (COP)</label>
+              <input id="cabin-price" name="precio" type="number" min="0" step="1000" required
+                aria-describedby="cabin-price-error">
+              <p class="form-error" id="cabin-price-error"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="cabin-photo">Fotografía</label>
+              <select id="cabin-photo" name="foto"></select>
+              <p class="form-hint">Fotos de referencia disponibles.</p>
+            </div>
+
+            <div class="form-field form-field--check">
+              <label class="check">
+                <input type="checkbox" id="cabin-featured" name="recomendada">
+                <span>Destacar como recomendada</span>
+              </label>
+              <p class="form-hint">Aparece primero en el catálogo público.</p>
+            </div>
+          </div>
+
+          <fieldset class="service-picker">
+            <legend>Servicios incluidos</legend>
+            <p class="form-hint">Se guardan en la relación cabaña–servicio.</p>
+            <div class="service-picker__grid" id="cabin-services"></div>
+          </fieldset>
+
+          <p class="form-note" id="cabin-form-note" role="status" aria-live="polite"></p>
+
+          <div class="form-actions">
+            <button class="btn btn--outline" type="button" data-close-cabin-form>Cancelar</button>
+            <button class="btn btn--primary" type="submit" id="cabin-form-submit">Guardar cabaña</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="admin-dialog admin-dialog--confirm" id="cabin-status-dialog" aria-labelledby="cabin-status-title">
+    <div class="admin-dialog__panel">
+      <header class="admin-dialog__head">
+        <div>
+          <p class="eyebrow">Catálogo</p>
+          <h2 id="cabin-status-title">Desactivar cabaña</h2>
+        </div>
+        <button class="dialog-close" type="button" data-close-cabin-status aria-label="Cerrar confirmación">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-close"></use>
+          </svg>
+        </button>
+      </header>
+
+      <div class="admin-dialog__body">
+        <p class="cabin-status__copy" id="cabin-status-copy"></p>
+        <p class="detail-note" id="cabin-status-note" hidden></p>
+        <div class="form-actions">
+          <button class="btn btn--outline" type="button" data-close-cabin-status>Cancelar</button>
+          <button class="btn btn--primary" type="button" id="cabin-status-confirm">Desactivar</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="admin-dialog admin-dialog--form admin-dialog--reservation" id="reservation-form-dialog"
+    aria-labelledby="reservation-form-title">
+    <div class="admin-dialog__panel">
+      <header class="admin-dialog__head">
+        <div>
+          <p class="eyebrow">Reservas</p>
+          <h2 id="reservation-form-title">Nueva reserva</h2>
+        </div>
+        <button class="dialog-close" type="button" data-close-reservation-form aria-label="Cerrar formulario">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-close"></use>
+          </svg>
+        </button>
+      </header>
+
+      <div class="admin-dialog__body">
+        <form id="reservation-form" novalidate>
+          <fieldset class="reservation-mode">
+            <legend>Cliente</legend>
+            <label class="check">
+              <input type="radio" name="cliente_modo" value="existente" checked>
+              <span>Cliente existente</span>
+            </label>
+            <label class="check">
+              <input type="radio" name="cliente_modo" value="nuevo">
+              <span>Registrar cliente nuevo</span>
+            </label>
+          </fieldset>
+
+          <div class="form-grid" data-client-existing>
+            <div class="form-field form-field--full">
+              <label for="reservation-client-search">Buscar cliente</label>
+              <input id="reservation-client-search" type="search" autocomplete="off"
+                placeholder="Documento, nombre o teléfono">
+              <p class="form-hint">Filtra la lista y elige el huésped que va a reservar.</p>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="reservation-client">Cliente</label>
+              <select id="reservation-client" aria-describedby="reservation-client-error"></select>
+              <p class="form-error" id="reservation-client-error"></p>
+            </div>
+          </div>
+
+          <div class="form-grid" data-client-new hidden>
+            <div class="form-field">
+              <label for="reservation-new-doc-type">Tipo de documento</label>
+              <select id="reservation-new-doc-type">
+                <option value="CC">CC · Cédula de ciudadanía</option>
+                <option value="CE">CE · Cédula de extranjería</option>
+                <option value="TI">TI · Tarjeta de identidad</option>
+                <option value="Pasaporte">Pasaporte</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="reservation-new-doc">Número de documento</label>
+              <input id="reservation-new-doc" type="text" maxlength="20" autocomplete="off"
+                aria-describedby="reservation-new-doc-error">
+              <p class="form-error" id="reservation-new-doc-error"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="reservation-new-name">Nombre</label>
+              <input id="reservation-new-name" type="text" maxlength="60" autocomplete="off"
+                aria-describedby="reservation-new-name-error">
+              <p class="form-error" id="reservation-new-name-error"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="reservation-new-lastname">Apellido</label>
+              <input id="reservation-new-lastname" type="text" maxlength="60" autocomplete="off"
+                aria-describedby="reservation-new-lastname-error">
+              <p class="form-error" id="reservation-new-lastname-error"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="reservation-new-phone">Teléfono</label>
+              <input id="reservation-new-phone" type="tel" maxlength="20" autocomplete="off"
+                aria-describedby="reservation-new-phone-error">
+              <p class="form-error" id="reservation-new-phone-error"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="reservation-new-email">Correo <span class="form-optional">(opcional)</span></label>
+              <input id="reservation-new-email" type="email" maxlength="100" autocomplete="off"
+                aria-describedby="reservation-new-email-error">
+              <p class="form-error" id="reservation-new-email-error"></p>
+            </div>
+          </div>
+
+          <div class="form-grid reservation-stay">
+            <div class="form-field form-field--full">
+              <label for="reservation-cabin">Cabaña</label>
+              <select id="reservation-cabin" aria-describedby="reservation-cabin-hint reservation-cabin-error"></select>
+              <p class="form-hint" id="reservation-cabin-hint"></p>
+              <p class="form-error" id="reservation-cabin-error"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="reservation-checkin">Entrada</label>
+              <input id="reservation-checkin" type="date" aria-describedby="reservation-checkin-error">
+              <p class="form-error" id="reservation-checkin-error"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="reservation-checkout">Salida</label>
+              <input id="reservation-checkout" type="date" aria-describedby="reservation-checkout-error">
+              <p class="form-error" id="reservation-checkout-error"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="reservation-guests">Huéspedes</label>
+              <input id="reservation-guests" type="number" min="1" max="99" step="1"
+                aria-describedby="reservation-guests-error">
+              <p class="form-error" id="reservation-guests-error"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="reservation-observations">Observaciones</label>
+              <input id="reservation-observations" type="text" maxlength="300" autocomplete="off"
+                placeholder="Llegada tardía, celebración…">
+            </div>
+          </div>
+
+          <div class="reservation-estimate" aria-live="polite">
+            <div>
+              <span>Tarifa por noche</span>
+              <strong id="reservation-rate">—</strong>
+            </div>
+            <div>
+              <span>Noches</span>
+              <strong id="reservation-nights">0</strong>
+            </div>
+            <div class="reservation-estimate__total">
+              <span>Total estimado</span>
+              <strong id="reservation-total">—</strong>
+            </div>
+          </div>
+
+          <p class="availability-note" id="reservation-availability" role="status" aria-live="polite">
+            Elige cabaña y fechas para consultar la disponibilidad.
+          </p>
+
+          <p class="form-note" id="reservation-form-note" role="alert" aria-live="assertive"></p>
+
+          <div class="form-actions">
+            <button class="btn btn--outline" type="button" data-close-reservation-form>Cancelar</button>
+            <button class="btn btn--primary" type="submit" id="reservation-form-submit">Confirmar reserva</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="admin-dialog admin-dialog--confirm" id="reservation-action-dialog"
+    aria-labelledby="reservation-action-title">
+    <div class="admin-dialog__panel">
+      <header class="admin-dialog__head">
+        <div>
+          <p class="eyebrow">Reservas</p>
+          <h2 id="reservation-action-title">Cancelar reserva</h2>
+        </div>
+        <button class="dialog-close" type="button" data-close-reservation-action
+          aria-label="Cerrar confirmación">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-close"></use>
+          </svg>
+        </button>
+      </header>
+
+      <div class="admin-dialog__body">
+        <p class="cabin-status__copy" id="reservation-action-copy"></p>
+
+        <div class="form-field reservation-reason" id="reservation-reason-field" hidden>
+          <label for="reservation-reason">Motivo de la cancelación</label>
+          <textarea id="reservation-reason" rows="2" maxlength="200"
+            placeholder="Opcional. Queda registrado en el historial."></textarea>
+        </div>
+
+        <p class="form-note" id="reservation-action-note" role="alert" aria-live="assertive"></p>
+
+        <div class="form-actions">
+          <button class="btn btn--outline" type="button" data-close-reservation-action>Volver</button>
+          <button class="btn btn--primary" type="button" id="reservation-action-confirm">Cancelar reserva</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="admin-dialog admin-dialog--confirm" id="request-action-dialog"
+    aria-labelledby="request-action-title">
+    <div class="admin-dialog__panel">
+      <header class="admin-dialog__head">
+        <div>
+          <p class="eyebrow">Solicitudes web</p>
+          <h2 id="request-action-title">Aprobar solicitud</h2>
+        </div>
+        <button class="dialog-close" type="button" data-close-request-action
+          aria-label="Cerrar confirmación">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-close"></use>
+          </svg>
+        </button>
+      </header>
+
+      <div class="admin-dialog__body">
+        <p class="cabin-status__copy" id="request-action-copy"></p>
+
+        <div class="form-field reservation-reason" id="request-reason-field" hidden>
+          <label for="request-reason">Motivo del rechazo</label>
+          <textarea id="request-reason" rows="2" maxlength="200"
+            placeholder="Opcional. Queda registrado en la solicitud."></textarea>
+        </div>
+
+        <p class="form-note" id="request-action-note" role="alert" aria-live="assertive"></p>
+
+        <div class="form-actions">
+          <button class="btn btn--outline" type="button" data-close-request-action>Volver</button>
+          <button class="btn btn--primary" type="button" id="request-action-confirm">Aprobar solicitud</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+
+</html>

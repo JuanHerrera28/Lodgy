@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lodgy · Servicios generales</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <!-- Cabecera -->
+    <header class="cabecera">
+        <h1 class="cabecera-titulo">Lodgy · Servicios generales</h1>
+        <div class="cabecera-info">
+            <div id="actualizadoA">Actualizado a las --:--</div>
+            <div class="cabecera-acciones">
+                <button class="btn btn-pequeno" id="btnActualizar" aria-label="Actualizar">Actualizar</button>
+                <button class="btn btn-pequeno btn-secundario" id="btnCerrarSesion" aria-label="Cerrar sesión">Cerrar sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mensajes -->
+    <div class="mensajes-contenedor" aria-live="polite" id="mensajesContenedor"></div>
+
+    <!-- Contenedor principal -->
+    <main class="contenedor-principal">
+        <!-- Carga inicial -->
+        <div id="estadoCarga" class="estado-carga">Cargando...</div>
+
+        <!-- Cabañas por limpiar -->
+        <section class="seccion" id="seccionCabanas" style="display: none;">
+            <h2 class="seccion-titulo">
+                Cabañas por limpiar (<span id="contadorCabanas">0</span>)
+            </h2>
+            <div id="listaCabanas" class="lista"></div>
+            <div id="sinCabanas" class="mensaje-vacio" style="display: none;">No hay cabañas por limpiar</div>
+        </section>
+
+        <!-- Daños pendientes -->
+        <section class="seccion" id="seccionDanos" style="display: none;">
+            <h2 class="seccion-titulo">
+                Daños pendientes (<span id="contadorDanos">0</span>)
+            </h2>
+            <div id="listaDanos" class="lista"></div>
+            <div id="sinDanos" class="mensaje-vacio" style="display: none;">No hay daños pendientes</div>
+        </section>
+    </main>
+
+    <!-- Botón fijo -->
+    <div class="boton-fijo-contenedor">
+        <button class="btn btn-grande boton-fijo" id="btnReportarDano">+ Reportar daño</button>
+    </div>
+
+    <!-- Panel reporte -->
+    <div id="panelReporte" class="panel-overlay" role="dialog" aria-modal="true">
+        <div class="panel-formulario">
+            <h2 class="panel-titulo">Reportar daño</h2>
+            
+            <div class="grupo-form-panel">
+                <label class="label-panel" for="selectCabana">Cabaña</label>
+                <select id="selectCabana" class="select-panel"></select>
+            </div>
+            
+            <div class="grupo-form-panel">
+                <label class="label-panel" for="descripcionDano">Descripción (obligatoria)</label>
+                <textarea id="descripcionDano" class="textarea-panel" maxlength="300" aria-required="true"></textarea>
+                <small style="color: var(--color-texto-secundario);"><span id="contador">0</span>/300</small>
+            </div>
+            
+            <div class="checkbox-grupo">
+                <input type="checkbox" id="bloqueaCabana" class="checkbox">
+                <label for="bloqueaCabana" class="checkbox-label">La cabaña no se puede usar</label>
+            </div>
+            
+            <div class="panel-botones">
+                <button class="btn" id="btnEnviarReporte">Enviar</button>
+                <button class="btn btn-secundario" id="btnCancelarReporte" style="background: var(--color-fondo-blanco); color: var(--color-principal); border-color: var(--color-principal);">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/trabajo.js"></script>
+</body>
+</html>

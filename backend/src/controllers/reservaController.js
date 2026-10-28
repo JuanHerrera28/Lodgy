@@ -8,9 +8,11 @@ const { esFecha, esEntero } = require('../utils/validar');
 const obtenerReservas = async (req, res) => {
     try {
         const [rows] = await db.query(
-            `SELECT r.id_reserva, r.fecha_entrada, r.fecha_salida, r.num_personas, r.precio_noche,
+            `SELECT r.id_reserva, r.id_cliente, r.id_cabana, r.fecha_entrada, r.fecha_salida,
+                    r.num_personas, r.precio_noche,
                     r.fecha_checkin, r.fecha_checkout, r.observaciones,
                     cl.nombre AS cliente_nombre, cl.apellido AS cliente_apellido,
+                    cl.tipo_documento, cl.numero_documento, cl.telefono, cl.correo,
                     ca.nombre AS cabana, er.nombre AS estado
              FROM Reserva r
              JOIN Cliente cl ON cl.id_cliente = r.id_cliente

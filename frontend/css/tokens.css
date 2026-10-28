@@ -1,0 +1,472 @@
+/* ==========================================================================
+   Lodgy · Identidad visual compartida
+   Paleta, tipografía, base y utilidades comunes a la web pública y al panel.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("../assets/fonts/cormorant-garamond-latin.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("../assets/fonts/cormorant-garamond-italic-latin.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../assets/fonts/manrope-latin.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Paleta base */
+  --sand: #f5ebdd;
+  --sand-soft: #faf4ea;
+  --sand-deep: #ecdfcb;
+  --ocean: #176b68;
+  --ocean-deep: #115653;
+  --ocean-soft: rgba(23, 107, 104, 0.1);
+  --turquoise: #a9d9d0;
+  --turquoise-soft: rgba(169, 217, 208, 0.3);
+  --wood: #d5b58a;
+  --wood-soft: rgba(213, 181, 138, 0.24);
+  --forest: #24443b;
+  --forest-deep: #1b342d;
+  --white: #ffffff;
+  --warm-gray: #77766f;
+  --ink: #223a33;
+
+  /* Trazos y transparencias */
+  --line: rgba(36, 68, 59, 0.14);
+  --line-strong: rgba(36, 68, 59, 0.26);
+  --overlay: rgba(21, 43, 37, 0.56);
+  --overlay-soft: rgba(21, 43, 37, 0.2);
+
+  /* Estados operativos: son colores funcionales y prevalecen sobre la paleta */
+  --status-available: #2f855a;
+  --status-available-bg: #eaf4ec;
+  --status-available-text: #1f6a43;
+  --status-occupied: #c0392b;
+  --status-occupied-bg: #fbeae8;
+  --status-occupied-text: #9f2f24;
+  --status-cleaning: #d9a300;
+  --status-cleaning-bg: #fbf2d9;
+  --status-cleaning-text: #765a00;
+  --status-maintenance: #7b7f7a;
+  --status-maintenance-bg: #eff0ee;
+  --status-maintenance-text: #5d625d;
+
+  /* Tipografía */
+  --font-serif: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-sans: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Medidas */
+  --container: 1240px;
+  --container-narrow: 1040px;
+  --gutter: clamp(1.25rem, 4vw, 4.5rem);
+  --section-y: clamp(4.75rem, 9vw, 8.5rem);
+  --radius: 2px;
+  --radius-lg: 4px;
+
+  /* Sombras discretas */
+  --shadow-soft: 0 24px 60px -38px rgba(36, 68, 59, 0.42);
+  --shadow-lift: 0 30px 70px -42px rgba(36, 68, 59, 0.58);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--forest);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: -0.018em;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+picture,
+svg {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+::selection {
+  background: var(--turquoise);
+  color: var(--forest);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ocean);
+  outline-offset: 4px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Utilidades
+   -------------------------------------------------------------------------- */
+
+.container {
+  margin-inline: auto;
+  width: min(100% - (var(--gutter) * 2), var(--container));
+}
+
+.container--narrow {
+  width: min(100% - (var(--gutter) * 2), var(--container-narrow));
+}
+
+.sr-only {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.skip-link {
+  background: var(--forest);
+  color: var(--sand);
+  left: 1rem;
+  padding: 0.8rem 1.2rem;
+  position: fixed;
+  top: -5rem;
+  z-index: 100;
+  transition: top 0.2s var(--ease);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.eyebrow {
+  align-items: center;
+  color: var(--ocean);
+  display: flex;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  gap: 0.8rem;
+  letter-spacing: 0.23em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  background: var(--wood);
+  content: "";
+  height: 1px;
+  width: 2.4rem;
+}
+
+.eyebrow--on-dark {
+  color: var(--turquoise);
+}
+
+.eyebrow--on-dark::before {
+  background: var(--turquoise);
+  opacity: 0.7;
+}
+
+.lead {
+  color: var(--forest);
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.1vw, 1.65rem);
+  line-height: 1.5;
+}
+
+.body-copy {
+  color: var(--warm-gray);
+  font-size: clamp(0.95rem, 1.2vw, 1.02rem);
+  line-height: 1.8;
+}
+
+.hairline {
+  background: var(--line);
+  border: 0;
+  height: 1px;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Botones
+   -------------------------------------------------------------------------- */
+
+.btn {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  display: inline-flex;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  gap: 0.75rem;
+  justify-content: center;
+  letter-spacing: 0.16em;
+  min-height: 3.25rem;
+  padding: 0.85rem 1.55rem;
+  text-transform: uppercase;
+  transition:
+    background-color 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    box-shadow 0.3s var(--ease),
+    color 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.985);
+}
+
+.btn svg {
+  flex: none;
+  transition: transform 0.25s var(--ease);
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+.btn--primary {
+  background: var(--ocean);
+  border-color: var(--ocean);
+  color: var(--white);
+}
+
+.btn--primary:hover {
+  background: var(--ocean-deep);
+  border-color: var(--ocean-deep);
+  box-shadow: 0 14px 30px -20px rgba(23, 107, 104, 0.95);
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--forest);
+}
+
+.btn--outline:hover {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--sand);
+}
+
+.btn--sand {
+  background: var(--sand);
+  border-color: var(--sand);
+  color: var(--forest);
+}
+
+.btn--sand:hover {
+  background: var(--white);
+  border-color: var(--white);
+}
+
+.btn--ghost-light {
+  background: transparent;
+  border-color: rgba(245, 235, 221, 0.34);
+  color: var(--sand);
+}
+
+.btn--ghost-light:hover {
+  background: var(--sand);
+  border-color: var(--sand);
+  color: var(--forest);
+}
+
+.link-arrow {
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  color: var(--ocean);
+  display: inline-flex;
+  font-size: 0.74rem;
+  font-weight: 700;
+  gap: 0.55rem;
+  letter-spacing: 0.13em;
+  padding-bottom: 0.16rem;
+  text-transform: uppercase;
+  transition: border-color 0.2s var(--ease), gap 0.2s var(--ease);
+  width: max-content;
+}
+
+.link-arrow:hover {
+  border-color: var(--ocean);
+  gap: 0.8rem;
+}
+
+/* --------------------------------------------------------------------------
+   Animaciones suaves
+   -------------------------------------------------------------------------- */
+
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(1.4rem);
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Estados operativos
+   -------------------------------------------------------------------------- */
+
+.status {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.68rem;
+  font-weight: 700;
+  gap: 0.45rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 0.5rem 0.7rem;
+  white-space: nowrap;
+}
+
+.status::before {
+  background: currentColor;
+  border-radius: 50%;
+  content: "";
+  height: 0.45rem;
+  width: 0.45rem;
+}
+
+.status--available {
+  background: var(--status-available-bg);
+  color: var(--status-available-text);
+}
+
+.status--occupied {
+  background: var(--status-occupied-bg);
+  color: var(--status-occupied-text);
+}
+
+.status--cleaning {
+  background: var(--status-cleaning-bg);
+  color: var(--status-cleaning-text);
+}
+
+.status--maintenance {
+  background: var(--status-maintenance-bg);
+  color: var(--status-maintenance-text);
+}

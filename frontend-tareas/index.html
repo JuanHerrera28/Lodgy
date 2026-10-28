@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lodgy · Iniciar sesión</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="contenedor-login">
+        <div class="caja-login">
+            <h1 class="titulo-login">Lodgy</h1>
+            <p class="subtitulo-login">Servicios generales</p>
+            
+            <form id="formLogin" class="form-login" novalidate>
+                <div class="grupo-form">
+                    <label class="label-form" for="correo">Correo</label>
+                    <input type="email" id="correo" class="input-form" autocomplete="email" required aria-required="true">
+                </div>
+                
+                <div class="grupo-form">
+                    <label class="label-form" for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" class="input-form" autocomplete="current-password" required aria-required="true">
+                </div>
+                
+                <div id="mensajeLogin" class="mensaje-login"></div>
+                
+                <button type="submit" class="btn-login" id="btnLogin">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>
